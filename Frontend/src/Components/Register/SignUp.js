@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [user, setUser] = React.useState({
@@ -17,7 +17,7 @@ function SignUp() {
     console.log(user);
 
     axios
-      .post("http://localhost:3000/api/user/register", user)
+      .post("https://backendskygoal.onrender.com/api/user/register", user)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
@@ -28,7 +28,7 @@ function SignUp() {
             confirmButtonText: "ok",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate("/");
+              navigate("/login");
             }
           });
         } else {

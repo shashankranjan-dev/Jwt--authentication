@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(true);
+
+  let location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname === "/register") {
+      setIsSignUp(true);
+    }
+    if (location.pathname === "/login") {
+      setIsSignUp(false);
+    }
+  }, [isSignUp, location.pathname]);
 
   return (
     <div>
@@ -14,7 +28,9 @@ function Auth() {
 
         <p
           class="ml-2 no-underline border-b border-blue text-blue-700 hover:cursor-pointer"
-          onClick={() => setIsSignUp(!isSignUp)}
+          onClick={
+            !isSignUp ? () => navigate("/register") : () => navigate("/login")
+          }
         >
           {isSignUp ? "Log in" : "Sign up"}
         </p>

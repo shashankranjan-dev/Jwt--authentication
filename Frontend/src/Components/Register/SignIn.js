@@ -13,7 +13,7 @@ function SignIn() {
 
   const handleLogin = () => {
     axios
-      .post("http://localhost:3000/api/user/login", user)
+      .post("https://backendskygoal.onrender.com/api/user/login", user)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
@@ -21,7 +21,6 @@ function SignIn() {
           localStorage.setItem("username", response.data.user.username);
           localStorage.setItem("email", response.data.user.email);
           navigate("/");
-          window.location.reload();
         } else {
           Swal.fire({
             title: "Error!",

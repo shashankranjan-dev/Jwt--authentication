@@ -10,6 +10,7 @@ function App() {
       <hr />
       <Routes>
         <Route path="/" element={<HeroPage />} />
+        <Route path="/login" element={<RegisterPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
       <Footer />
